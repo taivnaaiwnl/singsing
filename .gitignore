@@ -7,3 +7,5 @@ venv/
 data/
 *.log
 .DS_Store
+
+submission/video/raw/
