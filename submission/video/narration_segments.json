@@ -1,7 +1,7 @@
 [
   {
     "file": "narration_01_intro.mp3",
-    "text": "Hi, we're team TL from Mongolia. This is Kervan Credit Passport, an AI underwriting agent for small businesses that keep their books the informal way. Let me show you why we built it, and how it works.",
+    "text": "Hi, we're Taivanbat and Lkhagvadorj, AI engineers and data scientists at M bank, Mongolia's first neobank. This is Kervan Credit Passport, an AI underwriting agent for small businesses that keep their books the informal way. It's what we've learned about this problem, built into a working product. Let me show you why, and how it works.",
     "model": "eleven_v4",
     "voice": "Sarah"
   },
@@ -43,7 +43,7 @@
   },
   {
     "file": "narration_07_outro.mp3",
-    "text": "Under the hood, it's Fast A P I on Cloud Run, Gemini through the google-genai SDK with structured output, Secret Manager, and Cloud Build. Same pipeline, a new scorecard and language notes, and it travels across Central Asia. Thanks for watching.",
+    "text": "Under the hood, it's Fast A P I on Cloud Run, Gemini through the google-genai SDK with structured output, Secret Manager, and Cloud Build. Same pipeline, a new scorecard and language notes, and it travels across Central Asia. This was team TL, from M bank. Thanks for watching.",
     "model": "eleven_v4",
     "voice": "Sarah"
   }

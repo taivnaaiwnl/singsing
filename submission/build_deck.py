@@ -121,8 +121,8 @@ def build() -> Path:
             tf = sh.text_frame
             lines = [
                 ("Team Details", {"bold": True, "size": 16}),
-                ("Team name: TL", {"size": 13}),
-                ("Team leader name: Taivanbat.B   ·   Member: Lkhagvadorj.M", {"size": 13}),
+                ("Team name: TL  ·  Taivanbat Bayarsaikhan (leader), Lkhagvadorj Munkhdalai", {"size": 13}),
+                ("AI Engineers & Data Scientists at M bank, Mongolia's first neobank (fully digital, licensed 2022)", {"size": 12}),
                 ("Problem Statement: BFSI — Intelligent Risk, Fraud & Financial Experiences. Kervan Credit Passport: an AI underwriting agent that turns a small business's informal records (ledger photos, bank statements, payment exports) into a verified, explainable credit passport a bank can act on. Demo market: Mongolia.", {"size": 11}),
             ]
             for i, (text, opts) in enumerate(lines):
@@ -149,6 +149,7 @@ def build() -> Path:
                 if pPr.find(qn("a:buNone")) is None:
                     pPr.insert(0, pPr.makeelement(qn("a:buNone"), {}))
                 pPr.set("marL", "0"); pPr.set("indent", "0")
+    add_image(s, "mbank_logo.png", Inches(8.05), Inches(4.78), width=Inches(1.6))
 
     # ---- 3. Brief about the idea ---------------------------------------------------
     s = slides[2]
@@ -340,8 +341,10 @@ def build() -> Path:
     add_text(s, Inches(0.5), Inches(2.0), Inches(9.0), Inches(1.6), [
         ("Kervan Credit Passport", {"bold": True, "size": 28, "color": ACCENT}),
         ("Gemini reads, verifies, explains and writes. The score comes only from the scorecard.", {"size": 14}),
-        ("Team TL · Taivanbat.B · Lkhagvadorj.M", {"size": 12, "color": MUTED}),
+        ("Team TL · Taivanbat Bayarsaikhan · Lkhagvadorj Munkhdalai", {"size": 13, "color": MUTED}),
+        ("AI Engineers & Data Scientists at M bank, Mongolia's first neobank", {"size": 12, "color": MUTED}),
     ])
+    add_image(s, "mbank_logo.png", Inches(7.7), Inches(0.95), width=Inches(1.9))
 
     # ---- Drop the instruction slide (index 1) --------------------------------------
     delete_slide(prs, 1)

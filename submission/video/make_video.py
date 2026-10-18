@@ -130,7 +130,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         # 1b — why we build this (animated timeline)
         s = r.begin("01b_why")
         page.goto((VID / "why.html").as_uri())
-        r.hold_until(s, durs["01b_why"] + 0.8)
+        r.hold_until(s, durs["01b_why"] + 0.3)
 
         # 2 — loan request
         s = r.begin("02_request")
@@ -150,7 +150,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click("#dropzone", steps=16)
         page.set_input_files("#fileInput", [str(FIX / n) for n in ("sales_ledger.jpg", "bank_statement.csv", "bank_statement.pdf", "payment_export.csv")])
         page.mouse.move(W * 0.25, H * 0.8, steps=20)
-        r.hold_until(s, durs["02_request"] + 2.0)
+        r.hold_until(s, durs["02_request"] + 1.5)
 
         # 3 — run the live pipeline
         s = r.begin("03_pipeline")
@@ -177,7 +177,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click('#langToggle button[data-lang="mn"]', steps=18)
         r.at(s, 30.0)
         r.scroll_to("#plan", -160)
-        r.hold_until(s, durs["04_passport"] + 2.5)
+        r.hold_until(s, durs["04_passport"] + 1.5)
 
         # 5 — bank
         s = r.begin("05_bank")
@@ -198,7 +198,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click("#offersBusiness button.btn-primary", steps=16)
         r.at(s, 21.5)
         r.glide_click('.tab[data-view="bank"]', steps=20)
-        r.hold_until(s, durs["05_bank"] + 2.5)
+        r.hold_until(s, durs["05_bank"] + 1.5)
 
         # 6 — agent trust
         s = r.begin("06_trust")
@@ -213,13 +213,13 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.scroll_to("#checksTable", -140)
         r.at(s, 21.0)
         r.scroll_to("#evidenceTable", -160)
-        r.hold_until(s, durs["06_trust"] + 2.0)
+        r.hold_until(s, durs["06_trust"] + 1.0)
 
         # 7 — outro
         s = r.begin("07_outro")
         page.evaluate("() => window.__kv && window.__kv.hide()")
         page.goto((VID / "outro.html").as_uri())
-        r.hold_until(s, durs["07_outro"] + 2.0)
+        r.hold_until(s, durs["07_outro"] + 1.5)
         total = r.now()
         marks = list(r.marks)
         video = page.video
