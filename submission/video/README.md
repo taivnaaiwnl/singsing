@@ -1,6 +1,6 @@
 # Demo video
 
-`kervan_demo.mp4` (3:19, 1080p) is generated automatically by `make_video.py`: Playwright records the live app at http://localhost:8080 (typed form, file upload, cold Gemini pipeline, passport, bank offer and acceptance, agent trust) between a title and an architecture card, and the ElevenLabs narration segments are aligned to the recorded timestamps and muxed with ffmpeg. Re-run with `python submission/video/make_video.py` after `python submission/make_narration.py` if the words change. The manual recording notes below remain for a hand-recorded alternative.
+`kervan_demo.mp4` (3:47, 1080p; published copy: https://drive.google.com/file/d/1kRbX4fz7iDH2JRlafkA6QtOPfgG91qkS/view?usp=drivesdk) is generated automatically by `make_video.py`: Playwright records the live app at http://localhost:8080 (typed form, file upload, cold Gemini pipeline, passport, bank offer and acceptance, agent trust) between a title and an architecture card, and the ElevenLabs narration segments are aligned to the recorded timestamps and muxed with ffmpeg. Re-run with `python submission/video/make_video.py` after `python submission/make_narration.py` if the words change. The manual recording notes below remain for a hand-recorded alternative.
 
 Narration is pre-generated with ElevenLabs (`narration_full.mp3`, plus one file per segment). Record the screen while the narration plays, or record silently and lay the audio over it in the editor. Target length 3:20–3:45 (hard cap 4:00).
 

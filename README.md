@@ -4,6 +4,8 @@
 
 Built for the Google Cloud AI Builder Cup 2026 (BFSI: Intelligent Risk, Fraud & Financial Experiences). Market: Mongolia (₮ MNT).
 
+**Live app:** https://kervan-credit-passport-793182253173.asia-northeast1.run.app · **Demo video (3:47):** https://drive.google.com/file/d/1kRbX4fz7iDH2JRlafkA6QtOPfgG91qkS/view?usp=drivesdk · **Pitch deck:** [`submission/Kervan_TL_pitch_deck.pdf`](submission/Kervan_TL_pitch_deck.pdf)
+
 > **Core principle, visible in code and UI:** Gemini *reads, verifies, explains and writes*. The credit decision comes from a deterministic, auditable scorecard in [`app/scorecard_config.py`](app/scorecard_config.py). The LLM never sets or changes the score.
 
 ---
