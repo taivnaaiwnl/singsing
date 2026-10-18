@@ -76,6 +76,10 @@
       const done = list.assessments.find((a) => a.status === "done");
       if (done) { await loadAssessment(done.id); }
     } catch (e) { /* ignore */ }
+    // Deep link: /#bank, /#trust or /#market opens that view directly (after config + assessment are loaded,
+    // so the Bank and Agent trust views have the data they need). Any other hash keeps the default Business view.
+    const hashView = (location.hash || "").replace(/^#/, "");
+    if (["bank", "trust", "market"].includes(hashView)) showView(hashView);
   }
 
   // ---------------------------------------------------------------- form + files
