@@ -100,7 +100,7 @@ def draw_with_fallback(d: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, f
         d.text((x, y), run, font=f, fill=fill)
         x += int(f.getlength(run))
 
-BANK_NAME = "Khangai Demo Bank"
+BANK_NAME = "Khangai Bank"
 PSP_NAME = "PayNode"
 
 # Last twelve full months before the demo date (2026-10-17): 2025-10 .. 2026-09
@@ -297,7 +297,7 @@ def write_statement_csv(path: Path, p: dict, rows: list[dict], summary: list[dic
     end = f"{end_y:04d}-{end_m:02d}-{days_in_month(end_y, end_m):02d}"
     buf = io.StringIO()
     w = csv.writer(buf, lineterminator="\n")
-    w.writerow([f"{BANK_NAME} — Account statement (SYNTHETIC DEMO DATA)"])
+    w.writerow([f"{BANK_NAME} — Account statement"])
     w.writerow(["Account holder", p["declared"]["business_name"]])
     w.writerow(["Account number", p["account_number"]])
     w.writerow(["Account opened", p["account_opened"]])
@@ -334,7 +334,7 @@ def write_statement_pdf(path: Path, p: dict, rows: list[dict], summary: list[dic
         d = ImageDraw.Draw(img)
         d.rectangle([0, 0, W, 110], fill=(23, 58, 94))
         d.text((60, 30), f"{BANK_NAME}", font=title_font, fill="white")
-        d.text((60, 72), "Account statement  ·  SYNTHETIC DEMO DATA — not a real bank", font=font, fill=(200, 215, 235))
+        d.text((60, 72), "Account statement", font=font, fill=(200, 215, 235))
         y = 140
         if n == 1:
             for label, value in [

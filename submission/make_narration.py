@@ -26,7 +26,7 @@ if not API_KEY:
     raise SystemExit("ELEVENLABS_API_KEY missing in .env")
 
 MODEL = os.getenv("ELEVENLABS_MODEL", "eleven_multilingual_v2")
-PREFERRED_VOICES = ["Daniel", "Brian", "George", "Sarah", "Rachel", "Adam"]
+PREFERRED_VOICES = ["Sarah", "Matilda", "Alice", "Charlotte", "Lily", "Jessica", "Laura", "Rachel"]
 
 # Segment timings follow submission/video_script.md.
 SEGMENTS = [

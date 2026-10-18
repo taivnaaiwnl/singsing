@@ -120,7 +120,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         # 1 — title card
         s = r.begin("01_intro")
         page.goto((VID / "title.html").as_uri())
-        r.hold_until(s, durs["01_intro"] + 0.6)
+        r.hold_until(s, max(durs["01_intro"] + 3.5, 21.5))
 
         # 2 — loan request
         s = r.begin("02_request")
@@ -164,7 +164,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click('#langToggle button[data-lang="mn"]', steps=18)
         r.at(s, 30.0)
         r.scroll_to("#plan", -160)
-        r.hold_until(s, durs["04_passport"] + 3.0)
+        r.hold_until(s, durs["04_passport"] + 9.0)
 
         # 5 — bank
         s = r.begin("05_bank")
@@ -184,7 +184,7 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click("#offersBusiness button.btn-primary", steps=16)
         r.at(s, 21.5)
         r.glide_click('.tab[data-view="bank"]', steps=20)
-        r.hold_until(s, durs["05_bank"] + 3.0)
+        r.hold_until(s, durs["05_bank"] + 8.0)
 
         # 6 — agent trust
         s = r.begin("06_trust")
@@ -198,12 +198,12 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.scroll_to("#checksTable", -140)
         r.at(s, 21.0)
         r.scroll_to("#evidenceTable", -160)
-        r.hold_until(s, durs["06_trust"] + 2.0)
+        r.hold_until(s, durs["06_trust"] + 7.0)
 
         # 7 — outro
         s = r.begin("07_outro")
         page.goto((VID / "outro.html").as_uri())
-        r.hold_until(s, durs["07_outro"] + 1.5)
+        r.hold_until(s, durs["07_outro"] + 6.0)
         total = r.now()
         marks = list(r.marks)
         video = page.video

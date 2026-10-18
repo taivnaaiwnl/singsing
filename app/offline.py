@@ -80,7 +80,7 @@ def read(doc: UploadedDoc, data: bytes, prompt_version: str) -> tuple[ReadResult
                 monthly_figures=[MonthlyFigure(month=m["month"], sales_or_inflows_mnt=m["credits"], expenses_or_outflows_mnt=m["debits"], source_document=doc.filename, page_or_row="last page, monthly summary") for m in B],
                 extracted_fields=[
                     ExtractedField(field="account_holder", value=declared["business_name"], source_document=doc.filename, page_or_row="page 1", confidence=0.98),
-                    ExtractedField(field="bank_name", value="Khangai Demo Bank", source_document=doc.filename, page_or_row="page 1", confidence=0.98),
+                    ExtractedField(field="bank_name", value="Khangai Bank", source_document=doc.filename, page_or_row="page 1", confidence=0.98),
                     ExtractedField(field="total_credits", value=str(sum(m["credits"] for m in B)), source_document=doc.filename, page_or_row="last page", confidence=0.95),
                 ],
                 quality_notes=["offline fixture: values from demo ground truth"],
