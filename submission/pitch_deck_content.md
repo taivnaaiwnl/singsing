@@ -1,6 +1,6 @@
 # Kervan Credit Passport — pitch deck content
 
-Paste into the prescribed Google Slides template; one section below per slide. Keep the template's layout and order, and map these sections to its headings (the template was not readable from the machine, so headings may need renaming).
+Source text for submission/build_deck.py, which fills the prescribed template (submission/template.pptx); one section below per content slide.
 
 ## 1. Title
 **Kervan Credit Passport**
@@ -55,7 +55,7 @@ Google Cloud AI Builder Cup 2026 · BFSI: Intelligent Risk, Fraud & Financial Ex
 - Scorecard calibration on portfolio data with a partner bank; pilot with a Mongolian lender.
 
 ## 11. Team and links
-- Team: (names, roles)
+- Team: TL — Taivanbat Bayarsaikhan (leader), Lkhagvadorj Munkhdalai; AI Engineers & Data Scientists at M bank, Mongolia's first neobank
 - Deployed prototype: https://kervan-credit-passport-793182253173.asia-northeast1.run.app
-- Repository: (GitHub URL)
+- Repository: https://github.com/taivnaaiwnl/singsing
 - Demo video: (link)

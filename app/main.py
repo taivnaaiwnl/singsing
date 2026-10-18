@@ -137,6 +137,17 @@ def _anonymize_text(text: str, a: Assessment) -> str:
     return out
 
 
+def _anonymize_obj(obj, a: Assessment):
+    """Apply _anonymize_text to every string inside a dict/list payload."""
+    if isinstance(obj, str):
+        return _anonymize_text(obj, a)
+    if isinstance(obj, list):
+        return [_anonymize_obj(x, a) for x in obj]
+    if isinstance(obj, dict):
+        return {k: _anonymize_obj(v, a) for k, v in obj.items()}
+    return obj
+
+
 # --------------------------------------------------------------------------- #
 # Static + health
 # --------------------------------------------------------------------------- #
@@ -209,7 +220,7 @@ async def create_assessment(
         raise HTTPException(400, "All uploaded files were empty.")
     a = Assessment(id=aid, created_at=_now(), declared=declared, documents=docs, mode=settings.mode)
     store.put(a)
-    return {"id": aid, "documents": [d.model_dump() for d in docs]}
+    return {"id": aid, "documents": [d.model_dump(exclude={"path"}) for d in docs]}
 
 
 @app.get("/api/assessments")
@@ -331,11 +342,12 @@ def _bank_view(a: Assessment, full: bool) -> dict:
         "offers": [o.model_dump() for o in a.offers],
         "documents": [{"filename": x.filename, "type": next((r.result.document_type for r in a.reads if r.doc_id == x.doc_id), None)} for x in a.documents],
     }
+    out["flags"] = _anonymize_obj(out["flags"], a)
     if full:
         out["factors"] = [f.model_dump() for f in a.score.factors] if a.score else []
         out["penalties"] = [p.model_dump() for p in a.score.penalties] if a.score else []
-        out["checks"] = [c.model_dump() for c in a.verify.checks] if a.verify else []
-        out["verified_inputs"] = [v.model_dump() for v in a.verify.verified_inputs] if a.verify else []
+        out["checks"] = _anonymize_obj([c.model_dump() for c in a.verify.checks] if a.verify else [], a)
+        out["verified_inputs"] = _anonymize_obj([v.model_dump() for v in a.verify.verified_inputs] if a.verify else [], a)
         out["memo_html"] = _anonymize_text(a.write.html, a) if a.write else None
         out["memo_markdown"] = _anonymize_text(a.write.markdown, a) if a.write else None
         out["memo_guardrail"] = a.write.guardrail.model_dump() if a.write else None

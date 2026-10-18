@@ -113,6 +113,7 @@ Environment variables:
 | `GEMINI_THINKING_LEVEL` | `low` keeps a cold run under ~1 min; `high` for deeper reasoning; `none` for the model default | `low` |
 | `KERVAN_DATA_DIR` | where assessments, uploads and the Gemini cache are written | `./data` (`/tmp/kervan-data` in the container) |
 | `KERVAN_MAX_UPLOAD_MB` | per-file upload limit | 15 |
+| `KERVAN_OFFLINE` | `1` = developer-only fixture mode, no Gemini calls (what `python dev.py --offline` sets) | off |
 | `KERVAN_ADMIN_TOKEN` | secret the `X-Admin-Token` header must carry to call `DELETE /api/assessments` (reset); unset = reset endpoint disabled | — |
 
 ## Deploy to Cloud Run
@@ -126,22 +127,17 @@ export GEMINI_API_KEY=...                 # first time only: creates the Secret 
 ./deploy.sh YOUR_PROJECT_ID asia-northeast1
 ```
 
-Windows: `$env:GEMINI_API_KEY="..."; .\deploy.ps1 -ProjectId YOUR_PROJECT_ID -Region asia-northeast1`
+Windows: `.\deploy.ps1 -ProjectId YOUR_PROJECT_ID -Region asia-northeast1` from PowerShell, or `bash deploy.sh ...` from Git Bash (the script disables MSYS path conversion itself).
 
-What the script runs (the exact commands):
+What the script runs (the secret and the runtime service account are created only when missing; the key is read from `.env` when `GEMINI_API_KEY` is not exported):
 
 ```bash
 gcloud config set project YOUR_PROJECT_ID
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com iam.googleapis.com
 printf '%s' "$GEMINI_API_KEY" | gcloud secrets create gemini-api-key --data-file=- --replication-policy=automatic
-PROJECT_NUMBER=$(gcloud projects describe YOUR_PROJECT_ID --format='value(projectNumber)')
-gcloud secrets add-iam-policy-binding gemini-api-key \
-  --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
-  --role="roles/secretmanager.secretAccessor"
-gcloud run deploy kervan-credit-passport --source . --region asia-northeast1 --allow-unauthenticated \
-  --memory 1Gi --cpu 1 --timeout 300 --concurrency 20 --min-instances 0 --max-instances 3 \
-  --set-secrets GEMINI_API_KEY=gemini-api-key:latest \
-  --set-env-vars GEMINI_MODEL=gemini-3.8-flash,KERVAN_DATA_DIR=/tmp/kervan-data,GEMINI_TIMEOUT_S=120,GEMINI_THINKING_LEVEL=low
+gcloud iam service-accounts create kervan-run --display-name="Kervan Cloud Run runtime"
+gcloud secrets add-iam-policy-binding gemini-api-key   --member="serviceAccount:kervan-run@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/secretmanager.secretAccessor"
+gcloud run deploy kervan-credit-passport --source . --region asia-northeast1 --allow-unauthenticated   --service-account kervan-run@YOUR_PROJECT_ID.iam.gserviceaccount.com   --memory 1Gi --cpu 1 --timeout 300 --concurrency 20 --min-instances 0 --max-instances 3   --set-secrets GEMINI_API_KEY=gemini-api-key:latest   --set-env-vars GEMINI_MODEL=gemini-3.8-flash,GEMINI_TIMEOUT_S=120,GEMINI_THINKING_LEVEL=low
 gcloud run services describe kervan-credit-passport --region asia-northeast1 --format='value(status.url)'
 ```
 
@@ -153,7 +149,7 @@ curl -s $URL/api/health      # /healthz is intercepted by Google's front end on 
 curl -s $URL/api/config
 ```
 
-Notes: the container filesystem is read-only except `/tmp`, so assessments and the Gemini cache live in `/tmp/kervan-data` and reset on cold start; the service scales to zero when idle (`--min-instances 0`), so the first request after a pause takes a few seconds longer; use `--min-instances 1` to keep it warm. To reset assessments and uploaded documents, set `KERVAN_ADMIN_TOKEN` on the service and call `curl -X DELETE -H "X-Admin-Token: $KERVAN_ADMIN_TOKEN" "$URL/api/assessments?confirm=yes"` (the endpoint answers 403 while the variable is unset); locally, `python -c "from app.store import store; store.clear()"` does the same. No secrets are in the repo: the key is read from Secret Manager at runtime.
+Notes: the container filesystem is an in-memory layer discarded with the instance, so assessments and the Gemini cache (`/tmp/kervan-data`) reset on every cold start or new revision; the service scales to zero when idle (`--min-instances 0`), so the first request after a pause takes a few seconds longer; use `--min-instances 1` to keep it warm. To reset assessments and uploaded documents, set `KERVAN_ADMIN_TOKEN` on the service and call `curl -X DELETE -H "X-Admin-Token: $KERVAN_ADMIN_TOKEN" "$URL/api/assessments?confirm=yes"` (the endpoint answers 403 while the variable is unset); locally, `python -c "from app.store import store; store.clear()"` does the same. No secrets are in the repo: the key is read from Secret Manager at runtime.
 
 **Access:** the service is deployed with `--allow-unauthenticated` and has no login, so anyone with the URL can see every assessment, memo and uploaded document. Put it behind Identity-Aware Proxy, a Cloud Run IAM policy, or an application login before uploading documents that belong to real customers.
 
@@ -194,6 +190,6 @@ The hackathon rules require synthetic data only, so `fixtures/generate.py` produ
 ## Decisions made without asking
 
 * **Model:** `gemini-3.8-flash`, the current stable Flash model in the Gemini model catalog; overridable via `GEMINI_MODEL`.
-* **Region:** `asia-northeast1` default (closest to Mongolia); any Cloud Run region works.
+* **Region:** `asia-northeast1` (Tokyo) default; any Cloud Run region works (asia-northeast3 Seoul is geographically closer to Mongolia).
 * **Model flags do not penalise.** Gemini's verification flags are displayed but only deterministic flags move the score; Gemini may tighten a status (never loosen it).
 * **Account age as tenure proxy.** "Years in business" can reach at most *partially verified* without a registration document.

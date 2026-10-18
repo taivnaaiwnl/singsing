@@ -9,7 +9,7 @@ and on Cloud Run. Nothing secret is stored in the repo.
     GOOGLE_CLOUD_LOCATION          Vertex AI location (default: global)
     GEMINI_MODEL                   Model ID (default below, overridable)
     GEMINI_TIMEOUT_S               Per-call timeout in seconds (default 90)
-    GEMINI_THINKING_LEVEL          Optional: "minimal" | "low" | "medium" | "high"
+    GEMINI_THINKING_LEVEL          "minimal" | "low" | "medium" | "high", or "none" for the model default (default "low")
     KERVAN_DATA_DIR                Where assessments + cache JSON files are written
     KERVAN_OFFLINE                 "1" = developer-only fixture mode, no Gemini calls
     KERVAN_ADMIN_TOKEN             Secret required (X-Admin-Token header) by DELETE /api/assessments;
