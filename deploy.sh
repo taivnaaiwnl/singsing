@@ -6,8 +6,8 @@
 #
 # Defaults: region asia-northeast1 (Tokyo), service kervan-credit-passport, model gemini-3.8-flash.
 set -euo pipefail
-# Git Bash on Windows would rewrite /tmp/... arguments into Windows paths before gcloud sees them.
-export MSYS_NO_PATHCONV=1
+# Note for Git Bash on Windows: MSYS rewrites /tmp/... style arguments into Windows paths before gcloud
+# sees them, so this script passes no slash-prefixed values (KERVAN_DATA_DIR stays at the Dockerfile default).
 
 PROJECT_ID="${1:?usage: ./deploy.sh <gcp-project-id> [region]}"
 REGION="${2:-asia-northeast1}"

@@ -127,7 +127,7 @@ export GEMINI_API_KEY=...                 # first time only: creates the Secret 
 ./deploy.sh YOUR_PROJECT_ID asia-northeast1
 ```
 
-Windows: `.\deploy.ps1 -ProjectId YOUR_PROJECT_ID -Region asia-northeast1` from PowerShell, or `bash deploy.sh ...` from Git Bash (the script disables MSYS path conversion itself).
+Windows: `.\deploy.ps1 -ProjectId YOUR_PROJECT_ID -Region asia-northeast1` from PowerShell, or `bash deploy.sh ...` from Git Bash (the script passes no `/tmp`-style values, which MSYS would rewrite).
 
 What the script runs (the secret and the runtime service account are created only when missing; the key is read from `.env` when `GEMINI_API_KEY` is not exported):
 
