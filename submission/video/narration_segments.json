@@ -1,30 +1,50 @@
 [
   {
     "file": "narration_01_intro.mp3",
-    "text": "Kervan Credit Passport. In Mongolia, most small businesses keep their books in a notebook, a bank account, and a Q R payment app. Banks can't underwrite that, so they don't lend. Kervan turns those informal records into a verified, explainable credit passport."
+    "text": "Hi, we're team TL from Mongolia. This is Kervan Credit Passport, an AI underwriting agent for small businesses that keep their books the informal way. Let me show you why we built it, and how it works.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
+  },
+  {
+    "file": "narration_01b_why.mp3",
+    "text": "So, why this? Picture a cashmere workshop in Erdenet. Four years in business, loyal customers, busy every winter. But the books live in a notebook, a bank app, and a Q R wallet. When the owner asks for a loan, the bank can't verify any of it. So the answer is usually no, or a rate that makes no sense. It takes weeks of paperwork, and nobody explains the decision. That's the gap. Kervan turns those everyday records into a credit passport, in minutes, with every number traced back to its source.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_02_request.mp3",
-    "text": "The owner fills in what they declare: revenue, years in business, the amount, and the tenor. Then they drop their records: a photo of the handwritten ledger in Mongolian, the bank statement, and a payment export. Nothing is typed from the documents."
+    "text": "Here's how it works. The owner tells us what they declare: their revenue, how long they've been in business, the amount, and the term. Then they drop in their records: a photo of the handwritten ledger, in Mongolian, the bank statement, and a payment export. Nothing gets typed from the documents.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_03_pipeline.mp3",
-    "text": "Now the agent runs live. Read: Gemini reads each document with structured output and returns every figure with a page or row pointer. Verify: Python re-sums the C S V files and checks continuity and ratios, and Gemini adds qualitative checks. Notice the warning: declared revenue is forty-five percent above the bank inflows. Score: a deterministic scorecard, with no language model. That is our core principle. Explain and Write: Gemini turns the result into words."
+    "text": "Now the agent runs, live. First, Read: Gemini reads each document and returns every figure with a page or row pointer. Then Verify: Python re-adds the numbers and checks continuity and ratios, and Gemini adds its own checks. Look at that warning: the declared revenue is forty-five percent above what the bank statement shows. Then Score. This is the part we care about most: a deterministic scorecard, no language model involved. And finally Explain and Write, where Gemini turns the result into words.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_04_passport.mp3",
-    "text": "Here is the passport. Grade K3, with points, a P D estimate, and a rate band. Each factor bar shows its verification status: solid is verified, dashed is self-declared and counts half, hatched is inconsistent and counts zero. The improvement plan shows what the owner can do, and every expected gain was computed by re-running the scorecard, not guessed by the model. Switch to Mongolian for the owner's explanation."
+    "text": "And here's the passport. Grade K3, with the points, an estimated probability of default, and a rate band. Every factor bar shows how well it was verified: solid means verified, dashed means self-declared, so it only counts half, and hatched means inconsistent, which counts zero. Below, the improvement plan tells the owner what would actually move the grade, and each gain was computed by re-running the scorecard, not guessed. And yes, the owner can read all of it in Mongolian.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_05_bank.mp3",
-    "text": "The bank sees the passport anonymized: sector, request, and verified numbers only. Gemini drafted the credit memo: cash-flow analysis, risks, mitigants, the scorecard table, and an evidence appendix. The bank makes an offer. The business accepts, and only then is the identity revealed."
+    "text": "On the bank side, the passport arrives anonymised: just the sector, the request, and the verified numbers. Gemini has already drafted the credit memo: cash-flow analysis, risks, mitigants, the scorecard table, and an evidence appendix. The bank makes an offer. The business accepts, and only then is the identity revealed.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_06_trust.mp3",
-    "text": "Every claim is auditable. The step trace shows prompt versions, model, latency, and schema validation. The evidence trail links every figure to its document and row, with a confidence. Guardrails: the model cannot change the score, invented numbers are blocked, humans approve edge cases, and no protected attributes are used."
+    "text": "Everything here is auditable. The step trace shows the prompt versions, the model, latency, and schema validation. The evidence trail links every figure to its document and row, with a confidence. And the guardrails are simple: the model can't change the score, invented numbers get blocked, people approve the edge cases, and no protected attributes are ever used.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   },
   {
     "file": "narration_07_outro.mp3",
-    "text": "Under the hood: Fast A P I on Cloud Run, Gemini through the google-genai SDK with structured output, Secret Manager for keys, and Cloud Build for deploys. Same pipeline, a new scorecard config and language notes, and it scales across Central Asia. Thank you."
+    "text": "Under the hood, it's Fast A P I on Cloud Run, Gemini through the google-genai SDK with structured output, Secret Manager, and Cloud Build. Same pipeline, a new scorecard and language notes, and it travels across Central Asia. Thanks for watching.",
+    "model": "eleven_v4",
+    "voice": "Sarah"
   }
 ]

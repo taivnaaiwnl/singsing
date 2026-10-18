@@ -28,8 +28,9 @@ FIX = ROOT / "fixtures" / "personas" / "persona_a"
 BASE = "http://localhost:8080"
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 OUT_MP4 = VID / "kervan_demo.mp4"
-SEGS = ["01_intro", "02_request", "03_pipeline", "04_passport", "05_bank", "06_trust", "07_outro"]
+SEGS = ["01_intro", "01b_why", "02_request", "03_pipeline", "04_passport", "05_bank", "06_trust", "07_outro"]
 W, H = 1920, 1080
+OVERLAY_JS = (VID / "overlay.js").read_text(encoding="utf-8")
 
 CURSOR_JS = """
 (() => {
@@ -113,19 +114,29 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context(viewport={"width": W, "height": H}, record_video_dir=str(VID / "raw"), record_video_size={"width": W, "height": H}, device_scale_factor=1)
         ctx.add_init_script(CURSOR_JS)
+        ctx.add_init_script(OVERLAY_JS)
         page = ctx.new_page()
         r = Recorder(page)
         page.mouse.move(W / 2, H / 2)
 
-        # 1 — title card
+        def lower_third(i: int, title: str, sub: str) -> None:
+            page.evaluate("([i, t, s]) => window.__kv && window.__kv.show(i, 5, t, s)", [i, title, sub])
+
+        # 1 — title card (animated)
         s = r.begin("01_intro")
         page.goto((VID / "title.html").as_uri())
-        r.hold_until(s, max(durs["01_intro"] + 3.5, 21.5))
+        r.hold_until(s, max(durs["01_intro"] + 0.8, 12.5))
+
+        # 1b — why we build this (animated timeline)
+        s = r.begin("01b_why")
+        page.goto((VID / "why.html").as_uri())
+        r.hold_until(s, durs["01b_why"] + 0.8)
 
         # 2 — loan request
         s = r.begin("02_request")
         page.goto(BASE + "/?video=1", wait_until="networkidle")
         page.wait_for_selector("#runBtn")
+        lower_third(1, "Loan request", "What the owner declares, plus the records they actually have")
         r.type_into("business_name", "Erdenet Cashmere Workshop")
         r.type_into("owner_name", "Oyunchimeg Batbold")
         r.type_into("sector", "Cashmere garment workshop")
@@ -139,20 +150,22 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click("#dropzone", steps=16)
         page.set_input_files("#fileInput", [str(FIX / n) for n in ("sales_ledger.jpg", "bank_statement.csv", "bank_statement.pdf", "payment_export.csv")])
         page.mouse.move(W * 0.25, H * 0.8, steps=20)
-        r.hold_until(s, durs["02_request"] + 3.0)
+        r.hold_until(s, durs["02_request"] + 2.0)
 
         # 3 — run the live pipeline
         s = r.begin("03_pipeline")
+        lower_third(2, "Agent pipeline, live", "Read · Verify · Score · Explain · Write, streamed as each step finishes")
         r.glide_click("#runBtn", steps=22)
         page.mouse.move(W * 0.62, H * 0.45, steps=25)
         try:
             page.wait_for_function("() => /^(done|error)/.test(document.querySelector('#pipelineMeta').textContent)", timeout=170_000)
         except Exception as exc:  # keep recording even if the run is slow
             print("pipeline wait:", exc)
-        r.hold_until(s, durs["03_pipeline"] + 1.5)
+        r.hold_until(s, durs["03_pipeline"] + 1.0)
 
         # 4 — passport
         s = r.begin("04_passport")
+        lower_third(3, "Credit passport", "Grade, factors with verification status, flags, and a re-scored improvement plan")
         r.scroll_to("#passportCard", -40)
         r.at(s, 8.0)
         r.scroll_to("#factors", -120)
@@ -164,10 +177,11 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click('#langToggle button[data-lang="mn"]', steps=18)
         r.at(s, 30.0)
         r.scroll_to("#plan", -160)
-        r.hold_until(s, durs["04_passport"] + 9.0)
+        r.hold_until(s, durs["04_passport"] + 2.5)
 
         # 5 — bank
         s = r.begin("05_bank")
+        lower_third(4, "Bank view", "Anonymised passport, Gemini-drafted memo, offer; identity revealed only on acceptance")
         r.glide_click('.tab[data-view="bank"]', steps=20)
         page.wait_for_selector("#bankList .item", timeout=20_000)
         r.at(s, 4.0)
@@ -184,10 +198,11 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.glide_click("#offersBusiness button.btn-primary", steps=16)
         r.at(s, 21.5)
         r.glide_click('.tab[data-view="bank"]', steps=20)
-        r.hold_until(s, durs["05_bank"] + 8.0)
+        r.hold_until(s, durs["05_bank"] + 2.5)
 
         # 6 — agent trust
         s = r.begin("06_trust")
+        lower_third(5, "Agent trust", "Step trace, evidence trail from every figure to its source, guardrails")
         r.glide_click('.tab[data-view="trust"]', steps=20)
         page.wait_for_selector("#traceTable tr", timeout=20_000)
         r.at(s, 5.0)
@@ -198,12 +213,13 @@ def record(durs: dict[str, float]) -> tuple[Path, list[tuple[str, float]]]:
         r.scroll_to("#checksTable", -140)
         r.at(s, 21.0)
         r.scroll_to("#evidenceTable", -160)
-        r.hold_until(s, durs["06_trust"] + 7.0)
+        r.hold_until(s, durs["06_trust"] + 2.0)
 
         # 7 — outro
         s = r.begin("07_outro")
+        page.evaluate("() => window.__kv && window.__kv.hide()")
         page.goto((VID / "outro.html").as_uri())
-        r.hold_until(s, durs["07_outro"] + 6.0)
+        r.hold_until(s, durs["07_outro"] + 2.0)
         total = r.now()
         marks = list(r.marks)
         video = page.video

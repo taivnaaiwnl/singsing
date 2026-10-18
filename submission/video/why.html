@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Why Kervan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1c1917;--muted:#6b7280;--accent:#0b6b85;--line:#e7e5e4;--bg:#faf9f7;--warn:#b45309}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",system-ui,sans-serif;overflow:hidden}
+  .stage{position:relative;width:1920px;height:1080px}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.3;pointer-events:none}
+  .b1{width:900px;height:900px;left:-250px;top:-300px;background:radial-gradient(circle,#bfe0e8 0%,rgba(191,224,232,0) 70%);animation:drift1 18s ease-in-out infinite alternate}
+  .b2{width:800px;height:800px;right:-200px;bottom:-320px;background:radial-gradient(circle,#f3e6d0 0%,rgba(243,230,208,0) 70%);animation:drift2 22s ease-in-out infinite alternate}
+  @keyframes drift1{to{transform:translate(120px,80px)}}
+  @keyframes drift2{to{transform:translate(-140px,-60px)}}
+  .k{position:absolute;left:160px;top:110px;font-size:26px;font-weight:600;color:var(--accent);letter-spacing:.02em;opacity:0;animation:up .7s .2s both}
+  h1{position:absolute;left:160px;top:150px;margin:0;font-size:64px;font-weight:700;opacity:0;animation:up .8s .4s both}
+  @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes out{to{opacity:0;transform:translateY(-10px)}}
+
+  /* ---------- act 1: the gap (0-9s) ---------- */
+  .act1{position:absolute;left:160px;top:300px;display:flex;gap:40px;animation:out .6s 8.6s both}
+  .card{width:500px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:30px 32px;box-sizing:border-box;box-shadow:0 18px 40px rgba(28,25,23,.06);opacity:0;transform:translateY(24px);animation:card .8s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes card{to{opacity:1;transform:none}}
+  .card .ic{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;background:#eef6f8}
+  .card.warn .ic{background:#fdf1e7}
+  .card h3{margin:0 0 10px;font-size:28px;font-weight:600}
+  .card p{margin:0;font-size:21px;line-height:1.4;color:#44403c}
+  .arrow{align-self:center;font-size:44px;color:var(--muted);opacity:0;animation:up .5s both}
+
+  /* ---------- act 2: timeline (9-19s) ---------- */
+  .act2{position:absolute;left:160px;top:330px;width:1600px;opacity:0;animation:up .8s 9.2s both, out .6s 18.8s both}
+  .track{position:relative;margin-bottom:120px}
+  .track .lbl{font-size:24px;font-weight:600;margin-bottom:18px;display:flex;align-items:baseline;gap:14px}
+  .track .lbl span{font-size:18px;color:var(--muted);font-weight:400}
+  .rail{position:relative;height:10px;background:#ece9e2;border-radius:5px;overflow:visible}
+  .fill{position:absolute;left:0;top:0;height:100%;border-radius:5px;background:#c9c3b8;width:0}
+  .today .fill{animation:grow 6s linear 10s both}
+  .kervan .fill{background:var(--accent);animation:grow 1.6s cubic-bezier(.2,.8,.2,1) 15.2s both}
+  @keyframes grow{to{width:var(--w)}}
+  .m{position:absolute;top:-10px;transform:translateX(-50%);text-align:center;opacity:0;animation:up .5s both}
+  .m i{display:block;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid #c9c3b8;margin:0 auto 12px;box-sizing:border-box}
+  .kervan .m i{border-color:var(--accent);background:var(--accent)}
+  .m span{font-size:19px;color:#44403c;white-space:nowrap}
+  .m small{display:block;font-size:15px;color:var(--muted);margin-top:4px}
+  .tag{position:absolute;right:0;top:-8px;font-size:22px;font-weight:700;padding:8px 18px;border-radius:999px;opacity:0;animation:up .5s both}
+  .today .tag{background:#f3efe8;color:#6b7280;animation-delay:16.2s}
+  .kervan .tag{background:var(--accent);color:#fff;animation-delay:17s}
+
+  /* ---------- act 3: what changes + roadmap (19-28s) ---------- */
+  .act3{position:absolute;left:160px;top:300px;width:1600px;opacity:0;animation:up .8s 19.4s both}
+  .pills{display:flex;gap:22px;margin-bottom:70px}
+  .pill{padding:20px 30px;border-radius:999px;font-size:27px;font-weight:600;border:2px solid var(--accent);color:var(--accent);background:#fff;opacity:0;transform:scale(.85);animation:pop .55s cubic-bezier(.2,.9,.3,1.3) both}
+  .pill.solid{background:var(--accent);color:#fff}
+  @keyframes pop{to{opacity:1;transform:none}}
+  .road{position:relative;height:160px}
+  .road .line{position:absolute;left:30px;right:30px;top:40px;height:4px;background:var(--line)}
+  .road .prog{position:absolute;left:30px;top:40px;height:4px;background:var(--accent);width:0;animation:grow 2.4s ease-in-out 23s both}
+  .stop{position:absolute;top:24px;transform:translateX(-50%);text-align:center;opacity:0;animation:up .5s both}
+  .stop i{display:block;width:34px;height:34px;border-radius:50%;border:3px solid var(--accent);background:#fff;margin:0 auto 14px;box-sizing:border-box}
+  .stop.now i{background:var(--accent)}
+  .stop b{display:block;font-size:22px}
+  .stop small{font-size:16px;color:var(--muted)}
+  .road .cap{position:absolute;left:0;top:135px;font-size:19px;color:var(--muted);opacity:0;animation:up .6s 25.6s both}
+</style></head>
+<body><div class="stage">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="k">Why we're building this</div>
+  <h1>Good businesses, invisible to banks</h1>
+
+  <!-- act 1 -->
+  <div class="act1">
+    <div class="card" style="animation-delay:1.2s">
+      <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0b6b85" stroke-width="2"><path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+      <h3>Records are informal</h3><p>A handwritten ledger, a bank app and a QR wallet. Real income, no paperwork a lender can use.</p>
+    </div>
+    <div class="arrow" style="animation-delay:3.4s">→</div>
+    <div class="card warn" style="animation-delay:3.6s">
+      <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2"><path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9"/><path d="M9 19v-5h6v5"/></svg></div>
+      <h3>Banks can't verify</h3><p>Manual review takes weeks, declared figures can't be checked, and decisions aren't explained.</p>
+    </div>
+    <div class="arrow" style="animation-delay:5.8s">→</div>
+    <div class="card warn" style="animation-delay:6.0s">
+      <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg></div>
+      <h3>So the answer is "no"</h3><p>Or a price that doesn't fit the business. Growth stalls, and good borrowers stay unbanked.</p>
+    </div>
+  </div>
+
+  <!-- act 2 -->
+  <div class="act2">
+    <div class="track today">
+      <div class="lbl">Today <span>a loan file, by hand</span></div>
+      <div class="rail"><div class="fill" style="--w:100%"></div>
+        <div class="m" style="left:2%;animation-delay:10.2s"><i></i><span>Collect papers</span><small>statements, ledgers, copies</small></div>
+        <div class="m" style="left:38%;animation-delay:12.4s"><i></i><span>Manual review</span><small>re-typing, phone calls</small></div>
+        <div class="m" style="left:72%;animation-delay:14.6s"><i></i><span>Decision</span><small>unexplained, often "no"</small></div>
+      </div>
+      <div class="tag">weeks</div>
+    </div>
+    <div class="track kervan">
+      <div class="lbl">With Kervan <span>the same records, read by the agent</span></div>
+      <div class="rail"><div class="fill" style="--w:100%"></div>
+        <div class="m" style="left:2%;animation-delay:15.3s"><i></i><span>Upload</span><small>ledger photo, statement, export</small></div>
+        <div class="m" style="left:38%;animation-delay:15.9s"><i></i><span>Read · Verify · Score</span><small>Gemini reads, Python checks, scorecard decides</small></div>
+        <div class="m" style="left:72%;animation-delay:16.5s"><i></i><span>Passport + plan</span><small>explained, traceable, in Mongolian</small></div>
+      </div>
+      <div class="tag">minutes</div>
+    </div>
+  </div>
+
+  <!-- act 3 -->
+  <div class="act3">
+    <div class="pills">
+      <div class="pill solid" style="animation-delay:19.8s">Verified</div>
+      <div class="pill" style="animation-delay:20.4s">Explainable</div>
+      <div class="pill" style="animation-delay:21.0s">Portable between lenders</div>
+      <div class="pill" style="animation-delay:21.6s">Owner controls disclosure</div>
+    </div>
+    <div class="road">
+      <div class="line"></div><div class="prog" style="--w:calc(100% - 60px)"></div>
+      <div class="stop now" style="left:30px;animation-delay:22.6s"><i></i><b>Mongolia</b><small>live today · ₮</small></div>
+      <div class="stop" style="left:33%;animation-delay:23.6s"><i></i><b>Kazakhstan</b><small>planned · ₸</small></div>
+      <div class="stop" style="left:66%;animation-delay:24.4s"><i></i><b>Uzbekistan</b><small>planned · so'm</small></div>
+      <div class="stop" style="right:30px;left:auto;transform:translateX(50%);animation-delay:25.2s"><i></i><b>Kyrgyzstan</b><small>planned · som</small></div>
+      <div class="cap">Same pipeline everywhere: a per-market scorecard config and language notes. Everything else stays the same.</div>
+    </div>
+  </div>
+</div></body></html>
