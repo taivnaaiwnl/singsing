@@ -1,0 +1,204 @@
+{
+  "bank_monthly": [
+    {
+      "month": "2025-10",
+      "credits": 8900000,
+      "debits": 6942000,
+      "closing": 4808000
+    },
+    {
+      "month": "2025-11",
+      "credits": 9600000,
+      "debits": 7488000,
+      "closing": 6920000
+    },
+    {
+      "month": "2025-12",
+      "credits": 8400000,
+      "debits": 6552000,
+      "closing": 8768000
+    },
+    {
+      "month": "2026-01",
+      "credits": 7100000,
+      "debits": 5538000,
+      "closing": 10330000
+    },
+    {
+      "month": "2026-02",
+      "credits": 5200000,
+      "debits": 4056000,
+      "closing": 11474000
+    },
+    {
+      "month": "2026-03",
+      "credits": 4400000,
+      "debits": 3432000,
+      "closing": 12442000
+    },
+    {
+      "month": "2026-04",
+      "credits": 3900000,
+      "debits": 3042000,
+      "closing": 13300000
+    },
+    {
+      "month": "2026-05",
+      "credits": 4100000,
+      "debits": 3198000,
+      "closing": 14202000
+    },
+    {
+      "month": "2026-06",
+      "credits": 4600000,
+      "debits": 3588000,
+      "closing": 15214000
+    },
+    {
+      "month": "2026-07",
+      "credits": 5000000,
+      "debits": 3900000,
+      "closing": 16314000
+    },
+    {
+      "month": "2026-08",
+      "credits": 5900000,
+      "debits": 4602000,
+      "closing": 17612000
+    },
+    {
+      "month": "2026-09",
+      "credits": 7300000,
+      "debits": 5694000,
+      "closing": 19218000
+    }
+  ],
+  "payments_monthly": [
+    {
+      "month": "2025-10",
+      "net": 4005000
+    },
+    {
+      "month": "2025-11",
+      "net": 4320000
+    },
+    {
+      "month": "2025-12",
+      "net": 3780000
+    },
+    {
+      "month": "2026-01",
+      "net": 3195000
+    },
+    {
+      "month": "2026-02",
+      "net": 2340000
+    },
+    {
+      "month": "2026-03",
+      "net": 1980000
+    },
+    {
+      "month": "2026-04",
+      "net": 1755000
+    },
+    {
+      "month": "2026-05",
+      "net": 1845000
+    },
+    {
+      "month": "2026-06",
+      "net": 2070000
+    },
+    {
+      "month": "2026-07",
+      "net": 2250000
+    },
+    {
+      "month": "2026-08",
+      "net": 2655000
+    },
+    {
+      "month": "2026-09",
+      "net": 3285000
+    }
+  ],
+  "ledger": {
+    "months": [
+      {
+        "month": "2025-10",
+        "sales_mnt": 9970000,
+        "expenses_mnt": 6600000,
+        "row": 1
+      },
+      {
+        "month": "2025-11",
+        "sales_mnt": 10750000,
+        "expenses_mnt": 7340000,
+        "row": 2
+      },
+      {
+        "month": "2025-12",
+        "sales_mnt": 9410000,
+        "expenses_mnt": 5980000,
+        "row": 3
+      },
+      {
+        "month": "2026-01",
+        "sales_mnt": 7950000,
+        "expenses_mnt": 5440000,
+        "row": 4
+      },
+      {
+        "month": "2026-02",
+        "sales_mnt": 5820000,
+        "expenses_mnt": 3830000,
+        "row": 5
+      },
+      {
+        "month": "2026-03",
+        "sales_mnt": 4930000,
+        "expenses_mnt": 3100000,
+        "row": 6
+      },
+      {
+        "month": "2026-04",
+        "sales_mnt": 4370000,
+        "expenses_mnt": 2860000,
+        "row": 7
+      },
+      {
+        "month": "2026-05",
+        "sales_mnt": 4590000,
+        "expenses_mnt": 2990000,
+        "row": 8
+      },
+      {
+        "month": "2026-06",
+        "sales_mnt": 5150000,
+        "expenses_mnt": 3460000,
+        "row": 9
+      },
+      {
+        "month": "2026-07",
+        "sales_mnt": 5600000,
+        "expenses_mnt": 3850000,
+        "row": 10
+      },
+      {
+        "month": "2026-08",
+        "sales_mnt": 6610000,
+        "expenses_mnt": 4360000,
+        "row": 11
+      },
+      {
+        "month": "2026-09",
+        "sales_mnt": 8180000,
+        "expenses_mnt": 5500000,
+        "row": 12
+      }
+    ],
+    "total_sales_mnt": 83330000,
+    "total_expenses_mnt": 55310000
+  }
+}

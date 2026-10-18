@@ -1,0 +1,78 @@
+{
+  "months": [
+    {
+      "month": "2025-10",
+      "sales_mnt": 9970000,
+      "expenses_mnt": 6600000,
+      "row": 1
+    },
+    {
+      "month": "2025-11",
+      "sales_mnt": 10750000,
+      "expenses_mnt": 7340000,
+      "row": 2
+    },
+    {
+      "month": "2025-12",
+      "sales_mnt": 9410000,
+      "expenses_mnt": 5980000,
+      "row": 3
+    },
+    {
+      "month": "2026-01",
+      "sales_mnt": 7950000,
+      "expenses_mnt": 5440000,
+      "row": 4
+    },
+    {
+      "month": "2026-02",
+      "sales_mnt": 5820000,
+      "expenses_mnt": 3830000,
+      "row": 5
+    },
+    {
+      "month": "2026-03",
+      "sales_mnt": 4930000,
+      "expenses_mnt": 3100000,
+      "row": 6
+    },
+    {
+      "month": "2026-04",
+      "sales_mnt": 4370000,
+      "expenses_mnt": 2860000,
+      "row": 7
+    },
+    {
+      "month": "2026-05",
+      "sales_mnt": 4590000,
+      "expenses_mnt": 2990000,
+      "row": 8
+    },
+    {
+      "month": "2026-06",
+      "sales_mnt": 5150000,
+      "expenses_mnt": 3460000,
+      "row": 9
+    },
+    {
+      "month": "2026-07",
+      "sales_mnt": 5600000,
+      "expenses_mnt": 3850000,
+      "row": 10
+    },
+    {
+      "month": "2026-08",
+      "sales_mnt": 6610000,
+      "expenses_mnt": 4360000,
+      "row": 11
+    },
+    {
+      "month": "2026-09",
+      "sales_mnt": 8180000,
+      "expenses_mnt": 5500000,
+      "row": 12
+    }
+  ],
+  "total_sales_mnt": 83330000,
+  "total_expenses_mnt": 55310000
+}

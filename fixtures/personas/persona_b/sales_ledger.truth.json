@@ -1,0 +1,78 @@
+{
+  "months": [
+    {
+      "month": "2025-10",
+      "sales_mnt": 21220000,
+      "expenses_mnt": 15090000,
+      "row": 1
+    },
+    {
+      "month": "2025-11",
+      "sales_mnt": 22340000,
+      "expenses_mnt": 16000000,
+      "row": 2
+    },
+    {
+      "month": "2025-12",
+      "sales_mnt": 22850000,
+      "expenses_mnt": 17240000,
+      "row": 3
+    },
+    {
+      "month": "2026-01",
+      "sales_mnt": 20090000,
+      "expenses_mnt": 14390000,
+      "row": 4
+    },
+    {
+      "month": "2026-02",
+      "sales_mnt": 21010000,
+      "expenses_mnt": 15940000,
+      "row": 5
+    },
+    {
+      "month": "2026-03",
+      "sales_mnt": 21730000,
+      "expenses_mnt": 15310000,
+      "row": 6
+    },
+    {
+      "month": "2026-04",
+      "sales_mnt": 22440000,
+      "expenses_mnt": 16290000,
+      "row": 7
+    },
+    {
+      "month": "2026-05",
+      "sales_mnt": 21520000,
+      "expenses_mnt": 15360000,
+      "row": 8
+    },
+    {
+      "month": "2026-06",
+      "sales_mnt": 23050000,
+      "expenses_mnt": 17130000,
+      "row": 9
+    },
+    {
+      "month": "2026-07",
+      "sales_mnt": 22240000,
+      "expenses_mnt": 16430000,
+      "row": 10
+    },
+    {
+      "month": "2026-08",
+      "sales_mnt": 21930000,
+      "expenses_mnt": 16630000,
+      "row": 11
+    },
+    {
+      "month": "2026-09",
+      "sales_mnt": 22750000,
+      "expenses_mnt": 16730000,
+      "row": 12
+    }
+  ],
+  "total_sales_mnt": 263170000,
+  "total_expenses_mnt": 192540000
+}

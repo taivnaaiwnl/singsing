@@ -1,0 +1,28 @@
+{
+  "bank_monthly": [
+    {
+      "month": "2026-06",
+      "credits": 2400000,
+      "debits": 2160000,
+      "closing": 880000
+    },
+    {
+      "month": "2026-07",
+      "credits": 3600000,
+      "debits": 3240000,
+      "closing": 1240000
+    },
+    {
+      "month": "2026-08",
+      "credits": 5200000,
+      "debits": 4680000,
+      "closing": 1760000
+    },
+    {
+      "month": "2026-09",
+      "credits": 6600000,
+      "debits": 5940000,
+      "closing": 2420000
+    }
+  ]
+}

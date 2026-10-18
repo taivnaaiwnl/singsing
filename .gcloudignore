@@ -1,0 +1,15 @@
+# Files excluded from the Cloud Build source upload (gcloud run deploy --source .)
+.git
+.gitignore
+.gcloudignore
+.env
+.env.*
+data/
+tests/
+fixtures/
+.pytest_cache/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.claude/

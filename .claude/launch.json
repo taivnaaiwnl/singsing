@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kervan",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["dev.py"],
+      "port": 8080
+    },
+    {
+      "name": "kervan-offline",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["dev.py", "--offline"],
+      "port": 8080
+    }
+  ]
+}

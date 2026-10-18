@@ -1,0 +1,71 @@
+{
+  "generated_for": "Kervan Credit Passport demo",
+  "synthetic": true,
+  "personas": [
+    {
+      "key": "persona_a",
+      "title": "Persona A — Erdenet Cashmere Workshop (good, slightly over-declared)",
+      "short": "Cashmere workshop, Erdenet · 12 months · declared revenue above bank inflows",
+      "expected": "Decent grade (around K3) with one warning: declared revenue exceeds bank-documented inflows.",
+      "files": [
+        "sales_ledger.jpg",
+        "bank_statement.csv",
+        "bank_statement.pdf",
+        "payment_export.csv"
+      ],
+      "declared": {
+        "business_name": "Erdenet Cashmere Workshop",
+        "owner_name": "Oyunchimeg Batbold",
+        "sector": "Cashmere garment workshop",
+        "location": "Erdenet, Orkhon",
+        "years_in_business": 4,
+        "monthly_revenue_mnt": 9000000,
+        "loan_amount_mnt": 20000000,
+        "tenor_months": 18,
+        "purpose": "Buy raw cashmere for the winter production season"
+      }
+    },
+    {
+      "key": "persona_b",
+      "title": "Persona B — Khan-Uul Auto Parts Trading (strong)",
+      "short": "Auto parts trading, Ulaanbaatar · 12 months · all records consistent",
+      "expected": "Top grade (K1): consistent ledger, bank statement and payment export; declared figures verify.",
+      "files": [
+        "sales_ledger.jpg",
+        "bank_statement.csv",
+        "payment_export.csv"
+      ],
+      "declared": {
+        "business_name": "Khan-Uul Auto Parts Trading",
+        "owner_name": "Batzorig Ganbaatar",
+        "sector": "Auto parts retail and wholesale",
+        "location": "Ulaanbaatar, Khan-Uul",
+        "years_in_business": 6,
+        "monthly_revenue_mnt": 22000000,
+        "loan_amount_mnt": 40000000,
+        "tenor_months": 24,
+        "purpose": "Expand inventory and open a second sales counter"
+      }
+    },
+    {
+      "key": "persona_c",
+      "title": "Persona C — Darkhan Fresh Bakery (thin file)",
+      "short": "Bakery, Darkhan · only 4 months of records · new business",
+      "expected": "Low grade (K6) with a clear, re-scored improvement plan: add history and corroborating records.",
+      "files": [
+        "bank_statement.csv"
+      ],
+      "declared": {
+        "business_name": "Darkhan Fresh Bakery",
+        "owner_name": "Nomin Erdenebat",
+        "sector": "Bakery",
+        "location": "Darkhan, Darkhan-Uul",
+        "years_in_business": 1,
+        "monthly_revenue_mnt": 4500000,
+        "loan_amount_mnt": 15000000,
+        "tenor_months": 12,
+        "purpose": "Second oven and a display fridge"
+      }
+    }
+  ]
+}
