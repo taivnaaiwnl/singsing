@@ -117,6 +117,8 @@ Environment variables:
 
 ## Deploy to Cloud Run
 
+**Live deployment:** https://kervan-credit-passport-793182253173.asia-northeast1.run.app (project `ai-builder-cup-2026-mn`, region asia-northeast1).
+
 Prerequisites: `gcloud` CLI, a GCP project with billing, a Gemini API key.
 
 ```bash
@@ -146,7 +148,7 @@ gcloud run services describe kervan-credit-passport --region asia-northeast1 --f
 Verify:
 
 ```bash
-URL=https://kervan-credit-passport-xxxx.a.run.app
+URL=https://kervan-credit-passport-793182253173.asia-northeast1.run.app
 curl -s $URL/healthz
 curl -s $URL/api/config
 ```

@@ -56,6 +56,6 @@ Google Cloud AI Builder Cup 2026 · BFSI: Intelligent Risk, Fraud & Financial Ex
 
 ## 11. Team and links
 - Team: (names, roles)
-- Deployed prototype: (Cloud Run URL)
+- Deployed prototype: https://kervan-credit-passport-793182253173.asia-northeast1.run.app
 - Repository: (GitHub URL)
 - Demo video: (link)
