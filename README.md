@@ -149,7 +149,7 @@ Verify:
 
 ```bash
 URL=https://kervan-credit-passport-793182253173.asia-northeast1.run.app
-curl -s $URL/healthz
+curl -s $URL/api/health      # /healthz is intercepted by Google's front end on *.run.app
 curl -s $URL/api/config
 ```
 

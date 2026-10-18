@@ -63,5 +63,5 @@ Assert-Ok "gcloud run deploy"
 $url = gcloud run services describe $Service --region $Region --format='value(status.url)'
 Write-Host ">> deployed: $url"
 Write-Host ">> health:"
-(Invoke-WebRequest -UseBasicParsing "$url/healthz").Content
+(Invoke-WebRequest -UseBasicParsing "$url/api/health").Content
 Write-Host ">> open $url"

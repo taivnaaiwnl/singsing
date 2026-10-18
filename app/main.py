@@ -2,7 +2,7 @@
 
 Routes
     GET  /                                   UI
-    GET  /healthz                            liveness + mode/model
+    GET  /api/health (and /healthz locally)  liveness + mode/model
     GET  /api/config                         mode, model, scorecard summary, guardrails
     POST /api/assessments                    create from form + uploaded files
     DELETE /api/assessments?confirm=yes      reset all assessments (requires X-Admin-Token = KERVAN_ADMIN_TOKEN)
@@ -148,7 +148,8 @@ async def index() -> HTMLResponse:
     return HTMLResponse((settings.static_dir / "index.html").read_text(encoding="utf-8"))
 
 
-@app.get("/healthz")
+@app.get("/api/health")
+@app.get("/healthz")  # note: Google's front end answers /healthz on *.run.app itself, so use /api/health there
 async def healthz() -> dict:
     return {"status": "ok", "mode": settings.mode, "model": settings.model, "time": _now()}
 

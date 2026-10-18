@@ -54,7 +54,7 @@ gcloud run deploy "$SERVICE" \
 URL="$(gcloud run services describe "$SERVICE" --region "$REGION" --format='value(status.url)')"
 echo ">> deployed: $URL"
 echo ">> health:"
-curl -s "$URL/healthz"; echo
+curl -s "$URL/api/health"; echo
 echo ">> config:"
 curl -s "$URL/api/config" | python -c 'import json,sys; c=json.load(sys.stdin); print("mode", c["mode"], "| model", c["model"], "| gemini configured", c["gemini_configured"])'
 echo ">> open $URL and run an assessment with your documents"
